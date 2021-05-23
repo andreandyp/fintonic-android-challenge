@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="beer"
+            type="com.andreandyp.fintonicandroidchallenge.domain.Beer" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/beer_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".BeerDetailFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/im_beer_details_image"
+                android:layout_width="@dimen/image_size_details"
+                android:layout_height="@dimen/image_size_details"
+                android:layout_margin="@dimen/image_margin"
+                app:imageUrl="@{beer.imageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tv_beer_details_name"
+                style="@style/TextAppearance.MaterialComponents.Headline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@{beer.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/im_beer_details_image"
+                tools:text="Buzz" />
+
+            <TextView
+                android:id="@+id/tv_beer_details_tagline"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{beer.tagline}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_beer_details_name"
+                tools:text="A Real Bitter Experience." />
+
+            <TextView
+                android:id="@+id/tv_beer_details_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:layout_marginHorizontal="@dimen/text_margin"
+                android:text="@{beer.description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_beer_details_tagline"
+                tools:text="A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once." />
+
+            <TextView
+                android:id="@+id/tv_beer_details_date_label"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/text_margin"
+                android:layout_marginVertical="@dimen/text_margin"
+                android:text="@string/first_brewed_date_label"
+                app:layout_constraintEnd_toStartOf="@+id/tv_beer_details_date"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_beer_details_description" />
+
+            <TextView
+                android:id="@+id/tv_beer_details_date"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/text_margin"
+                android:text="@{beer.firstBrewed}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_beer_details_date_label"
+                app:layout_constraintTop_toBottomOf="@+id/tv_beer_details_description"
+                tools:text="09/2007" />
+
+            <TextView
+                android:id="@+id/tv_beer_details_food_label"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/food_pairings_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_beer_details_date_label" />
+
+            <TextView
+                android:id="@+id/tv_beer_details_food"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@{beer.foodPairing}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_beer_details_food_label"
+                tools:text="Spicy chicken tikka masala, Grilled chicken quesadilla, Caramel toffee cake" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

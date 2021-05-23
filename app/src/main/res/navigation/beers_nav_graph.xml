@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/beers_nav_graph"
+    app:startDestination="@id/beersFragment">
+
+    <fragment
+        android:id="@+id/beersFragment"
+        android:name="com.andreandyp.fintonicandroidchallenge.fragments.BeersFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_beers" >
+        <action
+            android:id="@+id/get_beer_details"
+            app:destination="@id/beerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beerFragment"
+        android:name="com.andreandyp.fintonicandroidchallenge.fragments.BeerFragment"
+        android:label=""
+        tools:layout="@layout/fragment_beer">
+        <argument
+            android:name="beer"
+            app:argType="com.andreandyp.fintonicandroidchallenge.domain.Beer" />
+    </fragment>
+</navigation>

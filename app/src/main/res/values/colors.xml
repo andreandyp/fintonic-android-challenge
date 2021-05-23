@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fintonic_light">#fe9095</color>
+    <color name="fintonic">#fe666f</color>
+    <color name="fintonic_dark">#fd414b</color>
+    <color name="blue_fintonic_light">#4a96ff</color>
+    <color name="blue_fintonic">#1f7cff</color>
+    <color name="blue_fintonic_dark">#0971ff</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
