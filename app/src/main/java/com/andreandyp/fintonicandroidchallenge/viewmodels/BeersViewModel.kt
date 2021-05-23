@@ -5,7 +5,6 @@ import com.andreandyp.fintonicandroidchallenge.domain.Beer
 import com.andreandyp.fintonicandroidchallenge.repository.BeerRepository
 import com.andreandyp.fintonicandroidchallenge.repository.Result
 import kotlinx.coroutines.launch
-import android.util.Log
 
 class BeersViewModel(private val repository: BeerRepository) : ViewModel() {
     private val _status = MutableLiveData<Result<List<Beer>>>()
@@ -26,12 +25,11 @@ class BeersViewModel(private val repository: BeerRepository) : ViewModel() {
     fun getBeers(forceUpdate: Boolean = true) {
         _status.value = Result.Loading
         viewModelScope.launch {
-            val result = repository.getBeers(currentPage.toString(), forceUpdate)
+            val result = repository.getBeers(currentPage, forceUpdate)
             if (result is Result.Success) {
                 val elements = _beers.value!!.toMutableSet()
                 elements.addAll(result.data)
                 _beers.postValue(elements.toList())
-                Log.i("PRUEBA", result.data.toString())
             } else {
                 result as Result.Error
             }

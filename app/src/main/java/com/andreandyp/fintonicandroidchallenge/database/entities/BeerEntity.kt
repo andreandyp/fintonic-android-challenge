@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.andreandyp.fintonicandroidchallenge.domain.Beer
-import com.andreandyp.fintonicandroidchallenge.network.BeerNetwork
 
 @Entity(tableName = "beers")
 data class BeerEntity(
@@ -17,14 +16,14 @@ data class BeerEntity(
     @ColumnInfo(name = "food_pairing") val foodPairing: String
 )
 
-fun BeerNetwork.asEntity() = BeerEntity(
+fun Beer.asEntity() = BeerEntity(
     id = this.id,
     name = this.name,
     tagline = this.tagline,
     description = this.description,
     firstBrewed = this.firstBrewed,
     imageUrl = this.imageUrl,
-    foodPairing = this.foodPairing.joinToString(",")
+    foodPairing = this.foodPairing
 )
 
 fun BeerEntity.asDomain() = Beer(
@@ -34,5 +33,5 @@ fun BeerEntity.asDomain() = Beer(
     description = this.description,
     firstBrewed = this.firstBrewed,
     imageUrl = this.imageUrl,
-    foodPairing = this.foodPairing.replace(",", "\n")
+    foodPairing = this.foodPairing,
 )

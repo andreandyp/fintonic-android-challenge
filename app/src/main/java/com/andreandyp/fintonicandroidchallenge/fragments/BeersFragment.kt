@@ -15,9 +15,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.andreandyp.fintonicandroidchallenge.R
 import com.andreandyp.fintonicandroidchallenge.adapters.BeersAdapter
 import com.andreandyp.fintonicandroidchallenge.database.BeerDatabase
+import com.andreandyp.fintonicandroidchallenge.database.RoomBeersDataSource
 import com.andreandyp.fintonicandroidchallenge.databinding.FragmentBeersBinding
 import com.andreandyp.fintonicandroidchallenge.domain.Beer
-import com.andreandyp.fintonicandroidchallenge.repository.BeerRepository
+import com.andreandyp.fintonicandroidchallenge.network.API
+import com.andreandyp.fintonicandroidchallenge.network.RetrofitBeersDataSource
+import com.andreandyp.fintonicandroidchallenge.repository.BeerRepositoryImpl
 import com.andreandyp.fintonicandroidchallenge.repository.Result
 import com.andreandyp.fintonicandroidchallenge.viewmodels.BeersViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -29,7 +32,10 @@ class BeersFragment : Fragment() {
     private lateinit var emptyListTextView: TextView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private val beersViewModel by viewModels<BeersViewModel> {
-        val repository = BeerRepository(BeerDatabase.getDatabase(requireContext()))
+        val beersDao = BeerDatabase.getDatabase(requireContext()).beersDao()
+        val roomBeersDataSource = RoomBeersDataSource(beersDao)
+        val retrofitBeersDataSource = RetrofitBeersDataSource(API.beers)
+        val repository = BeerRepositoryImpl(roomBeersDataSource, retrofitBeersDataSource)
         BeersViewModel.BeerListViewModelFactory(repository)
     }
 
